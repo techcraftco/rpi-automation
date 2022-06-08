@@ -1,0 +1,4 @@
+*.img
+examples/sources/raspios/boot/firstrun.sh
+examples/sources/ubuntu/boot/firmware/network-config
+.cache/

@@ -1,0 +1,27 @@
+#cloud-config
+hostname: autoupi
+manage_etc_hosts: true
+packages:
+  - avahi-daemon
+  - flash-kernel
+apt:
+  conf: |
+    Acquire {
+      Check-Date "false";
+    };
+
+# pi/raspberry
+users:
+  - name: pi
+    groups: users,adm,dialout,audio,netdev,video,plugdev,cdrom,games,input,gpio,spi,i2c,render,sudo
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: $5$BtzSfGse/A$MjVWjj36wGlYGCvVkVMMjBFJaWtDNLZa.MoYcgNBWy6
+
+ssh_pwauth: true
+
+timezone: Europe/London
+runcmd:
+  - sed -i 's/^s*REGDOMAIN=S*/REGDOMAIN=GB/' /etc/default/crda || true
+  - localectl set-x11-keymap "gb" pc105
+  - setupcon -k --force || true

@@ -1,0 +1,12 @@
+version: 2
+wifis:
+  renderer: networkd
+  wlan0:
+    access-points:
+      MY_SSID:
+        password: MY_PASSWORD
+    dhcp4: true
+    optional: true
+ethernets:
+  usb0:
+    link-local: [ipv4]
